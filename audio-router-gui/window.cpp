@@ -33,7 +33,7 @@ LRESULT window::OnDestroy(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, B
 
 LRESULT window::OnSysCommand(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
-    if (wParam == SC_MINIMIZE || IsWindowVisible() && wParam == SC_CLOSE)
+    if (wParam == SC_MINIMIZE/* || IsWindowVisible() && wParam == SC_CLOSE*/)
     {
         /* for(dialog_main::dialog_arrays_t::iterator it = this->dlg_main->dialog_arrays.begin();
              it != this->dlg_main->dialog_arrays.end();
@@ -132,10 +132,10 @@ LRESULT window::OnFileRefreshlist(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWn
 LRESULT window::OnAbout(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
 {
     this->MessageBoxW(
-        L"Audio Router version 0.10.2.\n" \
+        L"Audio Router version 0.10.4.\n" \
         L"\nIf you come across any bugs(especially relating to routing or duplicating), " \
         L"or just have an idea for a new feature, " \
-        L"please send a PM to the developer on reddit: reddit.com/user/audiorouterdev/", 
+        L"please open an issue on github: github.com/a-sync/audio-router/", 
         L"About", MB_ICONINFORMATION);
     return 0;
 }

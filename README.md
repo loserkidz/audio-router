@@ -1,16 +1,22 @@
 # Audio Router
 
-I created a similar app that does exactly what CheVolume does, except this is free at least for now. I tried to make a public post about it here on /r/software, but apparently they don't allow any download links to unknown apps in a text post.
+@audiorouterdev created a similar app that does exactly what CheVolume does, except this is free.
 
-If you want to test it out, [here's the download link (64-bit).](https://github.com/audiorouterdev/audio-router/releases/download/v0.10.2/AudioRouter-0.10.2.zip)
-
-If you don't have a 64 bit OS, [here's the 32 bit version.](https://github.com/audiorouterdev/audio-router/releases/download/v0.10.2/AudioRouter-0.10.2-32bit.zip)
+[Downloads](https://github.com/a-sync/audio-router/releases/)
 
 [Here's a simple gif to show how it's used.](http://i.imgur.com/uq6ApMe.gif)
 
-For all feature requests/bugs/feedback, you can send me a  [PM.](https://www.reddit.com/message/compose/?to=audiorouterdev) I highly appreciate all of them. The thread is now archived, so unfortunately you can't reply to it anymore.
+Changelog 0.10.4:
 
-**Version 0.10.2 of Audio Router released!** Download it from the original links above. 
+* Exit on close button
+* Added Exit menu option to File menu
+* Removed telemetry
+* Build updates
+
+Changelog 0.10.3:
+
+* Automatic routing enabled
+* Minimize to tray
 
 Changelog 0.10.2:
 
@@ -75,5 +81,3 @@ Current known bugs:
 * Routing audio to a new device does not delete old audio sessions, so the windows volume mixer fills up with unused sessions.
 
 Minimum supported OS version: Windows 7
-
-Since many people have been asking for this, [here's a link](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=audiorouterdev%40gmail%2ecom&lc=FI&item_name=Audio%20Router%20Donation&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted) for PayPal donation if you want to give your support. Naturally, I highly appreciate any amount of donation you are willing to make!
