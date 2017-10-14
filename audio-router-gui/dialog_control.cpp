@@ -13,8 +13,6 @@
 #define IDD_TIMER_CONTROL_DLG 2
 #define TIMER_INTERVAL_CONTROL_DLG 10
 
-extern telemetry* telemetry_m;
-
 DWORD custom_trackbar_ctrl::OnPrePaint(int /*idCtrl*/, LPNMCUSTOMDRAW /*lpNMCustomDraw*/)
 {
     return CDRF_NOTIFYITEMDRAW;
@@ -542,9 +540,6 @@ void dialog_control::do_route(bool duplication)
 
     if(sel_index >= 0)
     {
-        if(telemetry_m)
-            telemetry_m->update_on_routing();
-
         app_inject injector;
         try
         {

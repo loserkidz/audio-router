@@ -67,22 +67,28 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)third-party\WTL90_4140_Final\Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)third-party\WTL\Include;$(IncludePath)</IncludePath>
     <TargetName>Audio Router</TargetName>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(OutDir)\obj\$(Platform)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)third-party\WTL90_4140_Final\Include;$(IncludePath)</IncludePath>
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IncludePath>$(SolutionDir)third-party\WTL\Include;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
     <TargetName>Audio Router</TargetName>
+    <IntDir>$(OutDir)\obj\$(Platform)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)third-party\WTL90_4140_Final\Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)third-party\WTL\Include;$(IncludePath)</IncludePath>
     <TargetName>Audio Router</TargetName>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(OutDir)\obj\$(Platform)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)third-party\WTL90_4140_Final\Include;$(IncludePath)</IncludePath>
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IncludePath>$(SolutionDir)third-party\WTL\Include;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
     <TargetName>Audio Router</TargetName>
+    <IntDir>$(OutDir)\obj\$(Platform)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -166,12 +172,10 @@
     <ClInclude Include="dialog_main.h" />
     <ClInclude Include="formview.h" />
     <ClInclude Include="delegation.h" />
-    <ClInclude Include="licensing.h" />
     <ClInclude Include="policy_config.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="routing_params.h" />
     <ClInclude Include="ScrollHelper.h" />
-    <ClInclude Include="telemetry.h" />
     <ClInclude Include="util.h" />
     <ClInclude Include="window.h" />
     <ClInclude Include="wtl.h" />
@@ -188,13 +192,11 @@
     <ClCompile Include="dialog_control.cpp" />
     <ClCompile Include="dialog_main.cpp" />
     <ClCompile Include="formview.cpp" />
-    <ClCompile Include="licensing.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="delegation.cpp" />
     <ClCompile Include="policy_config.cpp" />
     <ClCompile Include="routing_params.cpp" />
     <ClCompile Include="ScrollHelper.cpp" />
-    <ClCompile Include="telemetry.cpp" />
     <ClCompile Include="util.cpp" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>

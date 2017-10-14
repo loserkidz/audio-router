@@ -1,8 +1,6 @@
 #include "window.h"
 
-telemetry* telemetry_m = NULL;
-
-window::window(bootstrapper* bootstrap) : dlg_main_b(true)/*, license(NULL)*/, bootstrap(bootstrap)
+window::window(bootstrapper* bootstrap) : dlg_main_b(true), bootstrap(bootstrap)
 {
     this->dlg_main = new dialog_main(*this);
     this->form_view = new formview(*this);
@@ -13,17 +11,10 @@ window::~window()
     if(this->dlg_main_b)
         delete this->dlg_main;
     delete this->form_view;
-
-    delete telemetry_m;
-    telemetry_m = NULL;
 }
 
 int window::OnCreate(LPCREATESTRUCT lpcs)
 {
-    telemetry_m = new telemetry;
-
-    /*this->license = new dialog_licensing(*this);*/
-
     this->m_hWndClient = this->dlg_main->Create(this->m_hWnd);
     this->dlg_main->ShowWindow(SW_SHOW);
 

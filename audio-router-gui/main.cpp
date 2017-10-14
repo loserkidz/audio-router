@@ -1,6 +1,5 @@
 #include "window.h"
 #include "util.h"
-#include "telemetry.h"
 #include <gdiplus.h>
 #include <cassert>
 //#include <time.h>

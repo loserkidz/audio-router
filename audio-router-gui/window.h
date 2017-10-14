@@ -3,7 +3,6 @@
 #include "dialog_main.h"
 #include "formview.h"
 #include "bootstrapper.h"
-#include "licensing.h"
 #include <memory>
 #include <shellapi.h>
 
@@ -19,7 +18,6 @@ private:
 public:
     dialog_main* dlg_main;
     formview* form_view;
-    /*dialog_licensing* license;*/
     bootstrapper* bootstrap;
 
     explicit window(bootstrapper*);

@@ -3,7 +3,6 @@
 #include "wtl.h"
 #include "app_list.h"
 #include "app_inject.h"
-#include "telemetry.h"
 #include <vector>
 #include <string>
 #include <map>
