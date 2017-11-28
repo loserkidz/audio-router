@@ -1,11 +1,45 @@
-# Audio Router
+<div align="center">
 
-@audiorouterdev created a similar app that does exactly what CheVolume does, except this is free.
+<h1>
+  <img src="./docs/img/audio-router.svg" alt="Audio Router" width="200">
+  <br>
+  Audio Router
+</h1>
 
-[Downloads](https://github.com/a-sync/audio-router/releases/)
+<h4>Dead-simple open-source Audio Router for Windows. Routes audio from programs to different audio devices.</h4>
 
-[Here's a simple gif to show how it's used.](http://i.imgur.com/uq6ApMe.gif)
+<a href="https://github.com/LeoWinterDE/audio-router/releases"><img src="https://img.shields.io/github/downloads/LeoWinterDE/audio-router/total.svg" alt="Github All Releases"></a>
+<a href="https://github.com/LeoWinterDE/audio-router/releases/latest"><img src="https://img.shields.io/github/release/LeoWinterDE/audio-router.svg" alt="latest release"></a>
+<a href="https://github.com/LeoWinterDE/audio-router/network"><img src="https://img.shields.io/github/forks/LeoWinterDE/audio-router.svg" alt="forks"></a>
+<a href="https://github.com/LeoWinterDE/audio-router/stargazers"><img src="https://img.shields.io/github/stars/LeoWinterDE/audio-router.svg" alt="stars"></a>
+<a href="https://github.com/LeoWinterDE/audio-router/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/LeoWinterDE/audio-router.svg" alt="license"></a>
 
+<p>Originally created by <a href="https://github.com/audiorouterdev/audio-router">@audiorouterdev</a>, based on a similar app that does exactly what CheVolume does, except this is free and Open-Source! Community Fork - Now build by the community.</p>
+
+<h3>Stop setting the Default Device. Start Routing!</h3>
+<img src="/docs/img/audio-router.gif">
+
+---
+
+<h2>Download</h2>
+<p>Audio Router is available for <strong>Windows</strong> only. Visit <a href="https://github.com/LeoWinterDE/audio-router/releases">Audio Router GitHub Releases</a></p>
+
+<h3>System requirements</h3>
+<p>Minimum supported OS version: Windows 7</p>
+
+<h3>Known Bugs</h3>
+<p>Scroll bars slightly cover other UI elements.</p>
+<p>The UI elements are repositioned wrongly sometimes when an update occurs.</p>
+<p>Routing audio to a new device does not delete old audio sessions, so the windows volume mixer fills up with unused sessions.</p>
+<h4>You found a bug? Please open a <a href="https://github.com/LeoWinterDE/audio-router/issues">Issue</a>!</h4>
+
+<h3>License</h3>
+<a href="https://github.com/LeoWinterDE/audio-router/blob/master/LICENSE.md">GPL-3.0</a>
+
+---
+</div>
+
+## Changelog
 Changelog 0.10.4:
 
 * Exit on close button
@@ -73,11 +107,3 @@ Changelog 0.6:
 * Greatly improved routing. Now programs like Hearthstone(and probably Spintires) will route aswell.
 * "Soft routing" option added to the route selection dialog. "Soft route" is the old method of routing, which fails more often. It's still included as soft routing, because it won't cut out the currently playing audio streams, unlike the new routing.
 * Metro apps are now possible to route. Unfortunately they still won't route straight out of the box, but if you need route metro apps too, send me a PM and I'll give instructions on how to enable the feature.
-
-Current known bugs:
-
-* Scroll bars slightly cover other UI elements.
-* The UI elements are repositioned wrongly sometimes when an update occurs.
-* Routing audio to a new device does not delete old audio sessions, so the windows volume mixer fills up with unused sessions.
-
-Minimum supported OS version: Windows 7
