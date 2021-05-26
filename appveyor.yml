@@ -22,7 +22,7 @@ matrix:
 # to disable automatic builds - use build_script
 build:
   project: audio-router.sln
-  verbosity: normal
+  verbosity: minimal
 
 after_build:
 - cmd: 7z a Audio-Router-%APPVEYOR_BUILD_VERSION%-%BIT%.zip %APPVEYOR_BUILD_FOLDER%\bin\Release\*.dll  %APPVEYOR_BUILD_FOLDER%\bin\Release\*.exe
