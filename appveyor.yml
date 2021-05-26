@@ -18,6 +18,11 @@ environment:
       msystem: mingw64
       bit: 64bit
       
+  allow_failures:
+    - platform: x86
+      configuration: Debug
+    - platform: x64
+      configuration: Release
 # this is how to allow failing jobs in the matrix
 matrix:
   fast_finish: true     # set this flag to immediately finish build once one of the jobs fails.
@@ -47,7 +52,7 @@ build_script:
   - cmd: ls %APPVEYOR_BUILD_FOLDER%\build.%MSYSTEM%
   
 after_build:
-- cmd: 7z a Audio-Router-%APPVEYOR_BUILD_ID%.zip %APPVEYOR_BUILD_FOLDER%\build.%MSYSTEM%\bin\*.dll  %APPVEYOR_BUILD_FOLDER%\build.%MSYSTEM%\bin\*.exe
+- cmd: 7z a Audio-Router-%APPVEYOR_BUILD_ID%.zip %APPVEYOR_BUILD_FOLDER%\bin\$(configuration)\*.dll  %APPVEYOR_BUILD_FOLDER%\bin\$(configuration)\*.exe
 
 artifacts:
 - path: Audio-Router-*.zip
