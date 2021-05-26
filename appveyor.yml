@@ -35,15 +35,15 @@ clone_script:
 # environment variables
 environment:
   INSTALL_DIR: c:\projects\kod\kod
-  matrix:
+#  matrix:
 
-    - GENERATOR: "Visual Studio 12 2013 Win64"
-      BUILD_PLATFORM: windows64_vs12
-      OPENCV_VERSION: 2.4.13
+#    - GENERATOR: "Visual Studio 12 2013 Win64"
+#      BUILD_PLATFORM: windows64_vs12
+#      OPENCV_VERSION: 2.4.13
 
-    - GENERATOR: "Visual Studio 14 2015 Win64"
-      BUILD_PLATFORM: windows64_vs14
-      OPENCV_VERSION: 3.1.0.20160701
+#    - GENERATOR: "Visual Studio 14 2015 Win64"
+#      BUILD_PLATFORM: windows64_vs14
+#      OPENCV_VERSION: 3.1.0.20160701
 
 # Automatically register private account and/or project AppVeyor NuGet feeds.
 nuget:
@@ -58,11 +58,11 @@ nuget:
 
 # build platform, i.e. x86, x64, Any CPU. This setting is optional.
 platform:
-#   - Mixed Platforms
+ - x86
 
 # build Configuration, i.e. Debug, Release, etc.
 configuration:
-    - Release
+ - Release
 
 # scripts that run after cloning repository
 install:
