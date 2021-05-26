@@ -9,5 +9,5 @@ build:
   verbosity: minimal
   
 artifacts:
-  - path: C:\projects\audio-router\bin\Release\Audio Router.exe
+  - path: build\staging\Audio Router.exe
     name: Audio Router.exe
