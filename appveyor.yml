@@ -12,16 +12,6 @@ before_build:
 # Build worker image (VM template)
 #image: Visual Studio 2017
 
-# environment variables
-environment:
-  matrix:
-    - platform: x86
-      msystem: mingw32
-      bit: 32bit
-    - platform: x64
-      msystem: mingw64
-      bit: 64bit
-      
 # this is how to allow failing jobs in the matrix
 matrix:
   fast_finish: true     # set this flag to immediately finish build once one of the jobs fails.
