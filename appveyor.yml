@@ -1,59 +1,90 @@
-#platform: x64
-#before_build:
+#---------------------------------#
+#      general configuration      #
+#---------------------------------#
+
+# version format
+version: %APPVEYOR_BUILD_VERSION%
+
+# you can use {branch} name in version format too
+# version: 1.0.{build}-{branch}
+
+# branches to build
+branches:
+  only:
+    - master
+
+# Maximum number of concurrent jobs for the project
+max_jobs: 1
 
 #---------------------------------#
 #    environment configuration    #
 #---------------------------------#
+
 # Build worker image (VM template)
-#image: Visual Studio 2017
+image: Visual Studio 2015
+
+# clone directory
+clone_folder: c:\projects\kod
+
+# set clone depth
+clone_depth: 1                      # clone entire repository history if not defined
 
 # environment variables
 environment:
+  INSTALL_DIR: c:\projects\kod\kod
   matrix:
-  - PLATFORM: x64
-  - CONFIGURATION: Release
-  # - PLATFORM: x86
-  
-# this is how to allow failing jobs in the matrix
-matrix:
-  fast_finish: true     # set this flag to immediately finish build once one of the jobs fails.
+
+    - GENERATOR: "Visual Studio 12 2013 Win64"
+      BUILD_PLATFORM: windows64_vs12
+      OPENCV_VERSION: 2.4.13
+
+    - GENERATOR: "Visual Studio 14 2015 Win64"
+      BUILD_PLATFORM: windows64_vs14
+      OPENCV_VERSION: 3.1.0.20160701
+
+# Automatically register private account and/or project AppVeyor NuGet feeds.
+nuget:
+  account_feed: true
+  project_feed: true
+  disable_publish_on_pr: true     # disable publishing of .nupkg artifacts to
+                                  # account/project feeds for pull request builds
 
 #---------------------------------#
 #       build configuration       #
 #---------------------------------#
-# to disable automatic builds - use build_script
-build:
-  project: audio-router.sln
-  verbosity: minimal
 
-# to run your custom scripts instead of automatic MSBuild
-#build_script:
-#  - cmd: set PATH=C:\msys64\%MSYSTEM%\bin;C:\msys64\usr\bin;%PATH%
-#  - cmd: grep '#define APP_VERSION_STR' %APPVEYOR_BUILD_FOLDER%/app/Rajce/Version.h > APP_VERSION
-#  - cmd: sed -i -e 's/.*"\([0-9\.]*\)".*/\1/' APP_VERSION
-#  - cmd: set /p APP_VERSION= < APP_VERSION
-#  - cmd: echo %APP_VERSION%
-#  - cmd: echo %NUMBER_OF_PROCESSORS%
-#  - cmd: GenerateCMakeFiles.sh "MINGW"
-#  - cmd: mkdir build.%MSYSTEM%
-#  - cmd: cd build.%MSYSTEM%
-#  - cmd: cmake -G "Unix Makefiles" ..
-#  - cmd: mingw32-make -j %NUMBER_OF_PROCESSORS%
-#  - cmd: MSBuild.exe audio-router.sln /p:Configuration=Debug /p:Platform="Any CPU"
-#- cmd: >-
-#    echo %PLATFORM%
-#    dotnet restore -v n audio-router.sln
-#    msbuild audio-router.sln /p:Platform="x64" /p:Configuration=Release /consoleloggerparameters:ErrorsOnly
-    
-after_build:
-- cmd: 7z a Audio-Router-v%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\bin\Debug\*.exe  %APPVEYOR_BUILD_FOLDER%\bin\Debug\*.dll
+# build platform, i.e. x86, x64, Any CPU. This setting is optional.
+platform:
+   - Any CPU
 
-artifacts:
-- path: Audio-Router-*.zip
-  name: Audio Router
-    
-# No tests for the samples at this time
+# build Configuration, i.e. Debug, Release, etc.
+configuration:
+    - Release
+
+# scripts that run after cloning repository
+install:
+  - cmd: choco install OpenCV -y -version %OPENCV_VERSION%
+
+build_script:
+  - IF EXIST c:\tools\opencv* CD c:\tools\opencv*
+  - SET OPENCV_DIR=%CD%\build
+  - echo Running cmake...
+  - cd c:\projects\kod
+  - set /p BUILD_VERSION=< VERSION
+  - appveyor UpdateBuild -Version "%BUILD_VERSION%-%APPVEYOR_BUILD_NUMBER%"
+  - cmake -G "%GENERATOR%" -DCMAKE_INSTALL_PREFIX=%INSTALL_DIR% -DBUILD_CLIENT=ON -DBUILD_OPENCV=ON -DOpenCV_DIR=%OPENCV_DIR% -DBUILD_PLATFORM=%BUILD_PLATFORM% .
+  - msbuild audio-router.sln /p:Configuration=Debug /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+  - msbuild audio-router.sln /p:Configuration=Release /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+  - 7z a -tzip Audio-Router-v%BUILD_VERSION%-%BUILD_PLATFORM%.zip kod/*
+
 test: off
 
-# Do not build on tags (GitHub only)
-#skip_tags: true
+#---------------------------------#
+#      artifacts configuration    #
+#---------------------------------#
+
+artifacts:
+
+  # pushing a single file
+  - path: Audio-Router-*.zip
+    name: Audio Router
