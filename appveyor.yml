@@ -6,6 +6,22 @@ configuration: Release
 
 before_build:
 
+#---------------------------------#
+#    environment configuration    #
+#---------------------------------#
+# Build worker image (VM template)
+#image: Visual Studio 2017
+
+# environment variables
+environment:
+  matrix:
+    - platform: x86
+      msystem: mingw32
+      bit: 32bit
+    - platform: x64
+      msystem: mingw64
+      bit: 64bit
+      
 # this is how to allow failing jobs in the matrix
 matrix:
   fast_finish: true     # set this flag to immediately finish build once one of the jobs fails.
@@ -16,10 +32,10 @@ matrix:
 # to disable automatic builds - use build_script
 build:
   project: audio-router.sln
-  verbosity: minimal
+  verbosity: normal
 
 after_build:
-- 7z a Audio-Router-%APP_VERSION%-%BIT%.zip %APPVEYOR_BUILD_FOLDER%\bin\Release\*.dll  %APPVEYOR_BUILD_FOLDER%\bin\Release\*.exe
+- cmd: 7z a Audio-Router-%APPVEYOR_BUILD_VERSION%-%BIT%.zip %APPVEYOR_BUILD_FOLDER%\bin\Release\*.dll  %APPVEYOR_BUILD_FOLDER%\bin\Release\*.exe
 
 artifacts:
 - path: Audio-Router-*.zip
