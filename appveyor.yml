@@ -58,7 +58,7 @@ nuget:
 
 # build platform, i.e. x86, x64, Any CPU. This setting is optional.
 platform:
-   - Mixed Platforms
+#   - Mixed Platforms
 
 # build Configuration, i.e. Debug, Release, etc.
 configuration:
