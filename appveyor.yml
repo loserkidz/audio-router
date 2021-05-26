@@ -44,6 +44,7 @@ build_script:
 #  - cmd: cmake -G "Unix Makefiles" ..
 #  - cmd: mingw32-make -j %NUMBER_OF_PROCESSORS%
   - cmd: cd %APPVEYOR_BUILD_FOLDER%
+  - cmd: ls %APPVEYOR_BUILD_FOLDER%\build.%MSYSTEM%
   
 after_build:
 - cmd: 7z a Audio-Router-%APPVEYOR_BUILD_ID%.zip %APPVEYOR_BUILD_FOLDER%\build.%MSYSTEM%\bin\*.dll  %APPVEYOR_BUILD_FOLDER%\build.%MSYSTEM%\bin\*.exe
