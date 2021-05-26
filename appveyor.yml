@@ -46,7 +46,7 @@ build:
 #    msbuild audio-router.sln /p:Platform="x64" /p:Configuration=Release /consoleloggerparameters:ErrorsOnly
     
 after_build:
-- cmd: 7z a Audio-Router-v%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\bin\Release\*.exe  %APPVEYOR_BUILD_FOLDER%\bin\Release\*.dll
+- cmd: 7z a Audio-Router-v%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\bin\Debug\*.exe  %APPVEYOR_BUILD_FOLDER%\bin\Debug\*.dll
 
 artifacts:
 - path: Audio-Router-*.zip
