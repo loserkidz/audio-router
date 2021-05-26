@@ -82,7 +82,9 @@ build_script:
 #  - cmake -G "%GENERATOR%" -DCMAKE_INSTALL_PREFIX=%INSTALL_DIR% -DBUILD_CLIENT=ON -DBUILD_OPENCV=ON -DOpenCV_DIR=%OPENCV_DIR% -DBUILD_PLATFORM=%BUILD_PLATFORM% .
 #  - msbuild audio-router.sln /p:Configuration=Debug /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 #  - msbuild audio-router.sln /p:Configuration=Release /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
-  - 7z a Audio-Router-v%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\bin\Debug\*.exe  %APPVEYOR_BUILD_FOLDER%\bin\Debug\*.dll
+
+after_build:
+- 7z a Audio-Router-v%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\bin\Release\*.exe  %APPVEYOR_BUILD_FOLDER%\bin\Release\*.dll
 
 test: off
 
