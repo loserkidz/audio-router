@@ -41,11 +41,11 @@ build_script:
 #  - cmd: MSBuild.exe audio-router.sln /p:Configuration=Debug /p:Platform="Any CPU"
 - cmd: >-
     echo %PLATFORM%
-    dotnet restore -v n MPI.sln
+    dotnet restore -v n audio-router.sln
     msbuild audio-router.sln /p:Platform="Any CPU" /p:Configuration=Debug /consoleloggerparameters:ErrorsOnly
     
 after_build:
-- cmd: 7z a Audio-Router-%APPVEYOR_BUILD_NUMBER%.zip %APPVEYOR_BUILD_FOLDER%\bin\release\*.dll  %APPVEYOR_BUILD_FOLDER%\bin\release\*.exe
+- cmd: 7z a Audio-Router-%APPVEYOR_BUILD_NUMBER%.zip %APPVEYOR_BUILD_FOLDER%\%PLATFORM%\*.dll  %APPVEYOR_BUILD_FOLDER%\%PLATFORM%\*.exe
 
 artifacts:
 - path: Audio-Router-*.zip
