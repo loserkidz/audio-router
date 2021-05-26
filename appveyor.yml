@@ -1,13 +1,36 @@
 image: Visual Studio 2019
+version: build{build}
+platform:
+- Any CPU
+- x86
 
-configuration: Release
+configuration:
+  - Debug
+  - Release
 
 before_build:
 
+# this is how to allow failing jobs in the matrix
+matrix:
+  fast_finish: true     # set this flag to immediately finish build once one of the jobs fails.
+  
+#---------------------------------#
+#       build configuration       #
+#---------------------------------#
+# to disable automatic builds - use build_script
 build:
   project: audio-router.sln
   verbosity: minimal
-  
+
+after_build:
+- 7z a Audio-Router-%APP_VERSION%-%BIT%.zip %APPVEYOR_BUILD_FOLDER%\bin\Release\*.dll  %APPVEYOR_BUILD_FOLDER%\bin\Release\*.exe
+
 artifacts:
-  - path: bin\Release\Audio Router.exe
-    name: Audio Router.exe
+- path: Audio-Router-*.zip
+  name: Audio Router
+    
+# No tests for the samples at this time
+test: off
+
+# Do not build on tags (GitHub only)
+skip_tags: true
