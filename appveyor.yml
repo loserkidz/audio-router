@@ -1,5 +1,5 @@
-platform: x64
-before_build:
+#platform: x64
+#before_build:
 
 #---------------------------------#
 #    environment configuration    #
@@ -27,7 +27,7 @@ build:
   verbosity: minimal
 
 # to run your custom scripts instead of automatic MSBuild
-build_script:
+#build_script:
 #  - cmd: set PATH=C:\msys64\%MSYSTEM%\bin;C:\msys64\usr\bin;%PATH%
 #  - cmd: grep '#define APP_VERSION_STR' %APPVEYOR_BUILD_FOLDER%/app/Rajce/Version.h > APP_VERSION
 #  - cmd: sed -i -e 's/.*"\([0-9\.]*\)".*/\1/' APP_VERSION
@@ -40,10 +40,10 @@ build_script:
 #  - cmd: cmake -G "Unix Makefiles" ..
 #  - cmd: mingw32-make -j %NUMBER_OF_PROCESSORS%
 #  - cmd: MSBuild.exe audio-router.sln /p:Configuration=Debug /p:Platform="Any CPU"
-- cmd: >-
-    echo %PLATFORM%
-    dotnet restore -v n audio-router.sln
-    msbuild audio-router.sln /p:Platform="x64" /p:Configuration=Release /consoleloggerparameters:ErrorsOnly
+#- cmd: >-
+#    echo %PLATFORM%
+#    dotnet restore -v n audio-router.sln
+#    msbuild audio-router.sln /p:Platform="x64" /p:Configuration=Release /consoleloggerparameters:ErrorsOnly
     
 after_build:
 - cmd: 7z a Audio-Router-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\bin\*  %APPVEYOR_BUILD_FOLDER%\bin\*
