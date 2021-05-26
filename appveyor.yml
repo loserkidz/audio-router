@@ -1,5 +1,4 @@
-configuration: Release
-platform: Any CPU
+platform: x64
 before_build:
 
 #---------------------------------#
@@ -9,7 +8,11 @@ before_build:
 #image: Visual Studio 2017
 
 # environment variables
-      
+environment:
+  matrix:
+  - PLATFORM: Any CPU
+  # - PLATFORM: x86
+  
 # this is how to allow failing jobs in the matrix
 matrix:
   fast_finish: true     # set this flag to immediately finish build once one of the jobs fails.
@@ -36,7 +39,11 @@ build_script:
 #  - cmd: cmake -G "Unix Makefiles" ..
 #  - cmd: mingw32-make -j %NUMBER_OF_PROCESSORS%
 #  - cmd: MSBuild.exe audio-router.sln /p:Configuration=Debug /p:Platform="Any CPU"
-  
+- cmd: >-
+    echo %PLATFORM%
+    dotnet restore -v n MPI.sln
+    msbuild audio-router.sln /p:Platform="Any CPU" /p:Configuration=Debug /consoleloggerparameters:ErrorsOnly
+    
 after_build:
 - cmd: 7z a Audio-Router-%APPVEYOR_BUILD_NUMBER%.zip %APPVEYOR_BUILD_FOLDER%\bin\release\*.dll  %APPVEYOR_BUILD_FOLDER%\bin\release\*.exe
 
