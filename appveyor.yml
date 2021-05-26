@@ -67,7 +67,10 @@ configuration:
 # scripts that run after cloning repository
 install:
 #  - cmd: choco install OpenCV -y -version %OPENCV_VERSION%
-
+build:
+#  project: audio-router.sln
+  verbosity: minimal
+  
 build_script:
 #  - IF EXIST c:\tools\opencv* CD c:\tools\opencv*
 #  - SET OPENCV_DIR=%CD%\build
@@ -79,7 +82,7 @@ build_script:
 #  - cmake -G "%GENERATOR%" -DCMAKE_INSTALL_PREFIX=%INSTALL_DIR% -DBUILD_CLIENT=ON -DBUILD_OPENCV=ON -DOpenCV_DIR=%OPENCV_DIR% -DBUILD_PLATFORM=%BUILD_PLATFORM% .
   - msbuild audio-router.sln /p:Configuration=Debug /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
   - msbuild audio-router.sln /p:Configuration=Release /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
-  - 7z a -tzip Audio-Router-v%BUILD_VERSION%-%BUILD_PLATFORM%.zip kod/*
+  - 7z a Audio-Router-v%APPVEYOR_BUILD_VERSION%.zip kod/*
 
 test: off
 
