@@ -21,7 +21,7 @@ max_jobs: 1
 #---------------------------------#
 
 # Build worker image (VM template)
-image: Visual Studio 2015
+image: Visual Studio 2019
 
 # clone directory
 clone_folder: c:\projects\kod
