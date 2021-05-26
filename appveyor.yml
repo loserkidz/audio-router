@@ -28,6 +28,9 @@ clone_folder: c:\projects\kod
 
 # set clone depth
 clone_depth: 1                      # clone entire repository history if not defined
+clone_script:
+- cmd: git clone -q --recursive --branch=%APPVEYOR_REPO_BRANCH% https://github.com/%APPVEYOR_REPO_NAME%.git %APPVEYOR_BUILD_FOLDER%
+- cmd: git checkout -qf %APPVEYOR_REPO_COMMIT%
 
 # environment variables
 environment:
@@ -55,7 +58,7 @@ nuget:
 
 # build platform, i.e. x86, x64, Any CPU. This setting is optional.
 platform:
-   - Any CPU
+   - Mixed Platforms
 
 # build Configuration, i.e. Debug, Release, etc.
 configuration:
