@@ -10,7 +10,7 @@ before_build:
 # environment variables
 environment:
   matrix:
-  - PLATFORM: Any CPU
+  - PLATFORM: x64
   # - PLATFORM: x86
   
 # this is how to allow failing jobs in the matrix
