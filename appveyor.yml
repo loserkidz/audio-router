@@ -11,6 +11,7 @@ before_build:
 environment:
   matrix:
   - PLATFORM: x64
+  - CONFIGURATION: Release
   # - PLATFORM: x86
   
 # this is how to allow failing jobs in the matrix
@@ -42,10 +43,10 @@ build_script:
 - cmd: >-
     echo %PLATFORM%
     dotnet restore -v n audio-router.sln
-    msbuild audio-router.sln /p:Platform="x64" /p:Configuration=Debug /consoleloggerparameters:ErrorsOnly
+    msbuild audio-router.sln /p:Platform="x64" /p:Configuration=Release /consoleloggerparameters:ErrorsOnly
     
 after_build:
-- cmd: 7z a Audio-Router-%APPVEYOR_BUILD_NUMBER%.zip %APPVEYOR_BUILD_FOLDER%\*  %APPVEYOR_BUILD_FOLDER%\*
+- cmd: 7z a Audio-Router-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\bin\*  %APPVEYOR_BUILD_FOLDER%\bin\*
 
 artifacts:
 - path: Audio-Router-*.zip
