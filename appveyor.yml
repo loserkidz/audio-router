@@ -1,11 +1,8 @@
 image: Visual Studio 2019
 version: build{build}
-platform:
-- Any CPU
+platform: Any CPU
 
-configuration:
-  - Debug
-  - Release
+configuration: Release
 
 before_build:
 
