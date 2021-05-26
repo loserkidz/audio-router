@@ -68,11 +68,10 @@ install:
 build_script:
   - IF EXIST c:\tools\opencv* CD c:\tools\opencv*
   - SET OPENCV_DIR=%CD%\build
+  - echo Running cmake...
+  - cd c:\projects\kod
   - set /p BUILD_VERSION=< VERSION
   - echo %BUILD_VERSION%
-  - echo Running cmake...
-  - mkdir c:\projects\kod
-  - cd c:\projects\kod 
   - appveyor UpdateBuild -Version "%BUILD_VERSION%-%APPVEYOR_BUILD_NUMBER%"
   - cmake -G "%GENERATOR%" -DCMAKE_INSTALL_PREFIX=%INSTALL_DIR% -DBUILD_CLIENT=ON -DBUILD_OPENCV=ON -DOpenCV_DIR=%OPENCV_DIR% -DBUILD_PLATFORM=%BUILD_PLATFORM% .
   - msbuild audio-router.sln /p:Configuration=Debug /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
