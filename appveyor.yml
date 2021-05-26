@@ -46,7 +46,7 @@ build_script:
 #  - cmd: cd %APPVEYOR_BUILD_FOLDER%
   
 after_build:
-- cmd: 7z a Audio-Router-%APPVEYOR_BUILD_NUMBER%.zip %APPVEYOR_BUILD_FOLDER%\bin\Release\*.dll  %APPVEYOR_BUILD_FOLDER%\bin\Release\*.exe
+- cmd: 7z a Audio-Router-%APPVEYOR_BUILD_NUMBER%.zip %APPVEYOR_BUILD_FOLDER%\bin\release\*.dll  %APPVEYOR_BUILD_FOLDER%\bin\release\*.exe
 
 artifacts:
 - path: Audio-Router-*.zip
