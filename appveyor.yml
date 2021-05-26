@@ -69,10 +69,10 @@ build_script:
   - IF EXIST c:\tools\opencv* CD c:\tools\opencv*
   - SET OPENCV_DIR=%CD%\build
   - echo Running cmake...
-  - cd c:\projects\kod
+  - cd c:\projects\kod\kod
   - set /p BUILD_VERSION=< VERSION
   - appveyor UpdateBuild -Version "%BUILD_VERSION%-%APPVEYOR_BUILD_NUMBER%"
-  - cmake -G "%GENERATOR%" -DCMAKE_INSTALL_PREFIX=%INSTALL_DIR% -DBUILD_CLIENT=ON -DBUILD_OPENCV=ON -DOpenCV_DIR=%OPENCV_DIR% -DBUILD_PLATFORM=%BUILD_PLATFORM% ..
+  - cmake -G "%GENERATOR%" -DCMAKE_INSTALL_PREFIX=%INSTALL_DIR% -DBUILD_CLIENT=ON -DBUILD_OPENCV=ON -DOpenCV_DIR=%OPENCV_DIR% -DBUILD_PLATFORM=%BUILD_PLATFORM% .
   - msbuild audio-router.sln /p:Configuration=Debug /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
   - msbuild audio-router.sln /p:Configuration=Release /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
   - 7z a -tzip Audio-Router-v%BUILD_VERSION%-%BUILD_PLATFORM%.zip kod/*
