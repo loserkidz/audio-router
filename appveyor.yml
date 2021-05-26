@@ -1,5 +1,5 @@
 configuration: Release
-
+platform: Any CPU
 before_build:
 
 #---------------------------------#
@@ -9,14 +9,6 @@ before_build:
 #image: Visual Studio 2017
 
 # environment variables
-environment:
-  matrix:
-    - platform: x86
-      msystem: mingw32
-      bit: 32bit
-    - platform: x64
-      msystem: mingw64
-      bit: 64bit
       
 # this is how to allow failing jobs in the matrix
 matrix:
@@ -31,7 +23,7 @@ build:
   verbosity: minimal
 
 # to run your custom scripts instead of automatic MSBuild
-#build_script:
+build_script:
 #  - cmd: set PATH=C:\msys64\%MSYSTEM%\bin;C:\msys64\usr\bin;%PATH%
 #  - cmd: grep '#define APP_VERSION_STR' %APPVEYOR_BUILD_FOLDER%/app/Rajce/Version.h > APP_VERSION
 #  - cmd: sed -i -e 's/.*"\([0-9\.]*\)".*/\1/' APP_VERSION
@@ -43,7 +35,7 @@ build:
 #  - cmd: cd build.%MSYSTEM%
 #  - cmd: cmake -G "Unix Makefiles" ..
 #  - cmd: mingw32-make -j %NUMBER_OF_PROCESSORS%
-#  - cmd: cd %APPVEYOR_BUILD_FOLDER%
+#  - cmd: MSBuild.exe audio-router.sln /p:Configuration=Debug /p:Platform="Any CPU"
   
 after_build:
 - cmd: 7z a Audio-Router-%APPVEYOR_BUILD_NUMBER%.zip %APPVEYOR_BUILD_FOLDER%\bin\release\*.dll  %APPVEYOR_BUILD_FOLDER%\bin\release\*.exe
