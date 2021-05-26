@@ -1,0 +1,13 @@
+image: Visual Studio 2019
+
+configuration: Release
+
+before_build:
+
+build:
+  project: CodecovProject.sln
+  verbosity: minimal
+  
+artifacts:
+  - path: C:\projects\audio-router\bin\Debug\Audio Router.exe
+    name: Audio Router.exe
