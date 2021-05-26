@@ -69,7 +69,7 @@ install:
 #  - cmd: choco install OpenCV -y -version %OPENCV_VERSION%
 build:
 #  project: audio-router.sln
-  verbosity: minimal
+#  verbosity: minimal
   
 build_script:
 #  - IF EXIST c:\tools\opencv* CD c:\tools\opencv*
@@ -80,8 +80,8 @@ build_script:
   - echo %BUILD_VERSION%
   - appveyor UpdateBuild -Version "%BUILD_VERSION%-%APPVEYOR_BUILD_NUMBER%"
 #  - cmake -G "%GENERATOR%" -DCMAKE_INSTALL_PREFIX=%INSTALL_DIR% -DBUILD_CLIENT=ON -DBUILD_OPENCV=ON -DOpenCV_DIR=%OPENCV_DIR% -DBUILD_PLATFORM=%BUILD_PLATFORM% .
-  - msbuild audio-router.sln /p:Configuration=Debug"
-  - msbuild audio-router.sln /p:Configuration=Release"
+  - msbuild audio-router.sln /p:Configuration=Debug /fileloggerparameters:Verbosity=minimal"
+  - msbuild audio-router.sln /p:Configuration=Release /fileloggerparameters:Verbosity=minimal"
 
 after_build:
 - 7z a Audio-Router-v%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\bin\Release\*.exe  %APPVEYOR_BUILD_FOLDER%\bin\Release\*.dll
