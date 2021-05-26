@@ -17,7 +17,7 @@ environment:
 # this is how to allow failing jobs in the matrix
 matrix:
   fast_finish: true     # set this flag to immediately finish build once one of the jobs fails.
-  
+
 #---------------------------------#
 #       build configuration       #
 #---------------------------------#
@@ -46,7 +46,7 @@ build:
 #    msbuild audio-router.sln /p:Platform="x64" /p:Configuration=Release /consoleloggerparameters:ErrorsOnly
     
 after_build:
-- cmd: 7z a Audio-Router-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\bin\*  %APPVEYOR_BUILD_FOLDER%\bin\*
+- cmd: 7z a Audio-Router-v%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\bin\Release\*.exe  %APPVEYOR_BUILD_FOLDER%\bin\Release\*.dll
 
 artifacts:
 - path: Audio-Router-*.zip
